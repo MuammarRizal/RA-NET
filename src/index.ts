@@ -1,12 +1,11 @@
-import express, { Application, NextFunction, Request, Response } from 'express'
-
-const app: Application = express()
+import Express, { Application } from 'express'
+import { routes } from './routes'
+import { logger } from './utils/logger'
+const app: Application = Express()
 const PORT: Number = 4000
 
-app.use('/health', (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).send({ data: 'Jange' })
-})
+routes(app)
 
 app.listen(PORT, () => {
-  console.log(`Server is listening at port : ${PORT}`)
+  logger.info(`Server is listening at port : `+ PORT)
 })
