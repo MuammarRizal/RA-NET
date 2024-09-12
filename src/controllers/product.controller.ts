@@ -1,20 +1,24 @@
 import { Request, Response } from 'express'
 import { logger } from '../utils/logger'
 import { createProductValidation } from '../validations/products.validation'
+import { getProductFromDB } from '../services/product.service'
 
+interface ProductType {
+  id: String
+  name: String
+  Price: Number
+  size: String
+}
 // GET METHODS
 
-export const getProducts = (req: Request, res: Response) => {
+export const getProducts = async (req: Request, res: Response) => {
   const { id } = req.params
 
-  const products = [
-    { id: 123, nama: 'Muammar Rizal', npm: 202043502004 },
-    { id: 312, nama: 'Muammar Rizal', npm: 202043502004 },
-    { id: 111, nama: 'Muammar Rizal', npm: 202043502004 }
-  ]
+  const products: any = await getProductFromDB()
+
   if (id) {
-    const filteredProducts = products.filter((product) => {
-      if (product.id === parseInt(id)) {
+    const filteredProducts = products.filter((product: ProductType) => {
+      if (product.id === id) {
         return product
       }
     })
@@ -24,9 +28,7 @@ export const getProducts = (req: Request, res: Response) => {
         status: true,
         statusCode: 200,
         message: 'Add detail product success',
-        data: {
-          ...filteredProducts[0]
-        }
+        data: filteredProducts[0]
       })
     } else {
       logger.info('Data not found')
