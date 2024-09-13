@@ -11,6 +11,12 @@ export const CreateUserController = async (req: Request, res: Response) => {
   console.log(req.body)
   const { error, value } = createUserValidation(req.body)
 
+  if (error) {
+    return res.status(401).send({
+      status: false,
+      message: error
+    })
+  }
   try {
     await createUserToDB(value)
     logger.info('Create Is success : ')
