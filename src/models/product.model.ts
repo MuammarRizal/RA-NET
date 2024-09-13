@@ -14,6 +14,9 @@ const ProductSchema = new mongoose.Schema(
     },
     size: {
       type: String
+    },
+    gender: {
+      type: String
     }
   },
   { timestamps: true }
