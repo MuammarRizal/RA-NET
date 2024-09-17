@@ -24,3 +24,5 @@ export const verifyJWT = (token: string) => {
     }
   }
 }
+
+export const reIssueAccessToken = async (refreshToken: string) => {}

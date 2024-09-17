@@ -21,3 +21,11 @@ export const createSessionValidation = (payload: createUserType) => {
 
   return schema.validate(payload)
 }
+
+export const refreshSessionValidation = (payload: createUserType) => {
+  const schema = Joi.object({
+    refreshToken: Joi.string().required()
+  })
+
+  return schema.validate(payload)
+}
