@@ -6,12 +6,15 @@ import cors from 'cors'
 
 // connect DB
 import './utils/connectDB'
+import deserializeToken from './middlewares/deserializeToken'
 const app: Application = Express()
 const PORT: Number = 4000
 
 // parse body request
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.use(deserializeToken)
 
 // cors access handler
 app.use(cors())

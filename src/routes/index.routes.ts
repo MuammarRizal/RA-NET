@@ -6,7 +6,7 @@ import { AuthRouter } from './auth.route'
 const _routes: Array<[string, Router]> = [
   ['/health', HealthRouter],
   ['/products', ProductsRouter],
-  ['/register', AuthRouter]
+  ['/', AuthRouter]
 ]
 
 export const routes = (app: Application) => {

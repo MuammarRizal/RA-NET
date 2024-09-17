@@ -36,8 +36,12 @@ export const getProducts = async (req: Request, res: Response) => {
       })
     }
   }
-  logger.info('Data detail tidak ditemukan')
-  res.status(200).send({ status: false, message: 'Data detail tidak ditemukan', products: products })
+  logger.info('Get all data succesfully')
+  return res.status(200).send({
+    status: true,
+    message: 'Get all data succesfully',
+    data: products
+  })
 }
 
 // POST METHODS
